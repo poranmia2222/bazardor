@@ -36,7 +36,7 @@ const ProductCard = ({ product }: ProductType) => {
                                     <TiArrowSortedUp className='text-xl text-[#890505]' />
                                     : product.change.dir === "down" ?
                                         <TiArrowSortedDown className='text-xl text-[#05893E]' /> :
-                                        <span className='text-xl text-black'>-</span>
+                                        <span className='text-xl text-black'>—</span>
                             }</span>{product.change.pct}%
                         </p>
                     </div>
