@@ -24,7 +24,7 @@ export default function RootLayout({
     data-theme="light"
     className={`${hindSiliguri.className} h-full antialiased`}>
       <body className= "min-h-full flex flex-col bg-[#F0F5F0]">
-        <Header></Header>
+        <Header ></Header>
         <Marquee></Marquee>
         {children}
         {/* <h1>আজকের দাম</h1> */}

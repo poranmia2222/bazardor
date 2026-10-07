@@ -21,13 +21,16 @@ const Marquee = async () => {
                             <span>{item.image}</span>
                             <span>{item.nameBn}</span>
                             <span>{
-                                item.change.dir === "up" ? <TiArrowSortedUp className='text-xl text-[#890505]' /> : <TiArrowSortedDown className='text-xl text-[#05893E]' />
+                                item.change.dir === "up" ? <TiArrowSortedUp className='text-xl text-[#890505]' /> :item.change.dir === "down" ?<TiArrowSortedDown className='text-xl text-[#05893E]' /> : 
+                                <span className='text-xl text-black'>-</span>
                             }</span>
                             {
                                 item.change.pct > 0?
                                 <span className=' text-[#890505]'>
                                     {item.change.pct}%
-                                </span>:<span className='text-[#05893E]'>
+                                </span>: item.change.pct < 0? <span className='text-[#05893E]'>
+                                    {item.change.pct}%
+                                </span> : <span className='text-black'>
                                     {item.change.pct}%
                                 </span>
                             }
