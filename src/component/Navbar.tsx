@@ -3,13 +3,16 @@ import Link from 'next/link';
 import React from 'react';
 
 const Navbar = async () => {
-    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/categories", {
-        next: {
-            revalidate: 3600,
-        },
-    })
+    const res = await fetch(
+        "https://api.api-store.workers.dev/api/bazardor/categories",
+        {
+            next: {
+                revalidate: 3600,
+            },
+        }
+    );
     const data: Category[] = await res.json()
-    console.log(data)
+    // console.log(data)
 
     const navLinks = <>
 
