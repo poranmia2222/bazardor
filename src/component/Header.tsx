@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const Header = () => {
     return (
-        <div>
+        <div className='bg-white'>
             <div className='container mx-auto flex justify-between my-2 px-4 lg:p-0'>
                 <Link href='/'>
                     <div className='flex gap-4 '>

@@ -17,13 +17,13 @@ const Navbar = async () => {
     const navLinks = <>
 
         {
-            data.map(item => <li key={item.id} className=' btn border-none'><Link href={`/${item.slug}`}><span>{item.icon}</span> {item.nameBn}</Link></li>)
+            data.map(item => <li key={item.id} className=' btn border-none bg-transparent hover:bg-[#05893E] hover:text-white'><Link href={`/${item.slug}`}><span>{item.icon}</span> {item.nameBn}</Link></li>)
         }
 
     </>
 
     return (
-        <div className='max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md'>
+        <div className='max-lg:collapse border-b-2 border-b-slate-300 bg-white shadow-sm w-full rounded-md'>
             <div className="max-lg:collapse container mx-auto">
                 <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
                 <label htmlFor="navbar-1-toggle" className="fixed inset-0 hidden max-lg:peer-checked:block"></label>
@@ -34,7 +34,7 @@ const Navbar = async () => {
                         </label>
                     </div>
                     <div className="navbar-start hidden lg:flex">
-                        <ul className=" gap-2 menu-horizontal px-1">
+                        <ul className=" gap-2 menu-horizontal  px-1">
                             {navLinks}
                         </ul>
                     </div>
