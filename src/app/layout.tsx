@@ -3,6 +3,7 @@ import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Header from "@/component/Header";
 import Marquee from "@/component/Marquee";
+import Footer from "@/component/Footer";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["latin", "bengali"],
@@ -26,8 +27,11 @@ export default function RootLayout({
       <body className= "min-h-full flex flex-col bg-[#F0F5F0]">
         <Header ></Header>
         <Marquee></Marquee>
-        {children}
+        <main className="flex-1">
+          {children}
+        </main>
         {/* <h1>আজকের দাম</h1> */}
+        <Footer></Footer>
       </body>
     </html>
   );

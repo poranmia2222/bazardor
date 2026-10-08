@@ -11,6 +11,16 @@ const Marquee = async () => {
     })
     const data: Product[] = await res.json()
     console.log(data)
+
+    const englishToBanglaNumber =(number: number): string => {
+        const banglaDigits = "০১২৩৪৫৬৭৮৯";
+
+        return String(number).replace(
+            /\d/g,
+            (digit: string) => banglaDigits[Number(digit)]
+        );
+    }
+
     return (
         <div className='bg-white'>
             <div className='py-3 my-2 border-b-2 border-b-slate-300'>
@@ -21,18 +31,18 @@ const Marquee = async () => {
                             <span>{item.image}</span>
                             <span>{item.nameBn}</span>
                             <span>{
-                                item.change.dir === "up" ? <TiArrowSortedUp className='text-xl text-[#890505]' /> :item.change.dir === "down" ?<TiArrowSortedDown className='text-xl text-[#05893E]' /> : 
-                                <span className='text-xl text-black'>—</span>
+                                item.change.dir === "up" ? <TiArrowSortedUp className='text-xl text-[#890505]' /> : item.change.dir === "down" ? <TiArrowSortedDown className='text-xl text-[#05893E]' /> :
+                                    <span className='text-xl text-black'>—</span>
                             }</span>
                             {
-                                item.change.pct > 0?
-                                <span className=' text-[#890505]'>
-                                    {item.change.pct}%
-                                </span>: item.change.pct < 0? <span className='text-[#05893E]'>
-                                    {item.change.pct}%
-                                </span> : <span className='text-black'>
-                                    {item.change.pct}%
-                                </span>
+                                item.change.pct > 0 ?
+                                    <span className=' text-[#890505]'>
+                                        {englishToBanglaNumber(item.change.pct)}%
+                                    </span> : item.change.pct < 0 ? <span className='text-[#05893E]'>
+                                        {englishToBanglaNumber(item.change.pct).slice(1)}%
+                                    </span> : <span className='text-black'>
+                                        {englishToBanglaNumber(item.change.pct)}%
+                                    </span>
                             }
                         </div>)
                     }

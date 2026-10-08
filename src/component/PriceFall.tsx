@@ -15,7 +15,7 @@ const PriceFall = async () => {
     const data: Product[] = await res.json()
     const priceUpProducts = data
         .filter(item => item.change.dir === "down")
-        .sort((a, b) => b.change.pct - a.change.pct).slice(0, 6);
+        .sort((a, b) => a.change.pct - b.change.pct).slice(0, 6);
     console.log(priceUpProducts)
 
     return (
