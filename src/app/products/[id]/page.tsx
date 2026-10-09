@@ -2,7 +2,7 @@ import ProductDetails from '@/component/ProductDetails';
 import React, { Suspense } from 'react';
 
 interface Props {
-    params: Promise<{ params: string }>;
+    params: Promise<{ id: string }>;
 }
 const ProductDetailsPage = ({ params }: Props) => {
     return (

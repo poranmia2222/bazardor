@@ -1,9 +1,33 @@
+'use client'
+import { signUp } from '@/lib/auth-client';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { VscGithubInverted } from 'react-icons/vsc';
 
 const SignUpPage = () => {
+
+    const handleSignUp = async (e: React.SubmitEvent<HTMLElement>) => {
+        e.preventDefault()
+        const formData = new FormData(e.target);
+        const user = Object.fromEntries(formData.entries()) as { name: string, email: string, image: string, password: string };
+        // console.log(user)
+        const { data: resData, error } = await signUp.email({
+            ...user,
+            callbackURL: "/",
+        })
+        console.log(resData)
+        if (resData) {
+            //   console.log(data);
+            redirect("/");
+        }
+
+        if (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div>
             <div className='mx-auto max-w-110 mt-2'>
@@ -12,16 +36,16 @@ const SignUpPage = () => {
                     <p className='text-center'>বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।</p>
                 </div>
                 <div className='bg-white p-8 rounded-2xl border border-slate-300'>
-                    <form action="">
+                    <form onSubmit={handleSignUp}>
                         <fieldset className="fieldset">
                             <label className="label text-lg" htmlFor="name">নাম</label>
-                            <input type="text" id="name" className="input w-full text-lg" placeholder="যেমন: রহিম উদ্দিন" />
+                            <input name='name' type="text" id="name" className="input w-full text-lg" placeholder="যেমন: রহিম উদ্দিন" />
                             <label className="label text-lg" htmlFor="email">ইমেইল</label>
-                            <input type="email" id="email" className="input w-full text-lg" placeholder="you@example.com" />
+                            <input name='email' type="email" id="email" className="input w-full text-lg" placeholder="you@example.com" />
                             <label className="label text-lg" htmlFor="password">পাসওয়ার্ড</label>
-                            <input type="password" id="password" className="input w-full text-lg" placeholder="কমপক্ষে ৮ অক্ষর" />
+                            <input name='password' type="password" id="password" className="input w-full text-lg" placeholder="কমপক্ষে ৮ অক্ষর" />
                             <label className="label text-lg" htmlFor="password">পাসওয়ার্ড নিশ্চিত করুন</label>
-                            <input type="password" id="password" className="input w-full text-lg" placeholder="আবার লিখুন" />
+                            <input type="password" id="again-password" className="input w-full text-lg" placeholder="আবার লিখুন" />
                             <button className="btn btn-success bg-primary my-2 text-white">অ্যাকাউন্ট তৈরি করুন</button>
                         </fieldset>
                     </form>

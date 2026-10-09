@@ -4,8 +4,11 @@ import Image from 'next/image';
 import logo from '../../public/logo-icon.png'
 import DateDisplay from './DateDisplay';
 import Link from 'next/link';
+import AuthControls from './AuthControls';
+import { Suspense } from 'react';
 
 const Header = () => {
+
     return (
         <div className='bg-white'>
             <div className='container mx-auto flex justify-between my-2 px-4 lg:p-0'>
@@ -18,10 +21,13 @@ const Header = () => {
                         </div>
                     </div>
                 </Link>
-                <div className='flex gap-4'>
+                {/* <div className='flex gap-4'>
                    <Link href="/signin"><button className="btn border-none bg-transparent ">সাইন ইন</button></Link>
                     <Link href="/signup"><button className="btn btn-success bg-primary text-white">সাইন আপ</button></Link>
-                </div>
+                </div> */}
+                <Suspense fallback={<span>Loading...</span>}>
+                    <AuthControls />
+                </Suspense>
             </div>
             <Navbar></Navbar>
         </div>

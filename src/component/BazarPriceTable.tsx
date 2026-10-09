@@ -8,6 +8,7 @@ interface PropsType {
 const BazarPriceTable = ({ market }: PropsType) => {
   return (
     <div className="w-full overflow-x-auto rounded-2xl border border-gray-200 bg-white p-3">
+      
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="border-b border-gray-200 text-left text-gray-500">

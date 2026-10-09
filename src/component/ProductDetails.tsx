@@ -115,6 +115,7 @@ const ProductDetails = async ({ params }: ProductDataType) => {
                     </div>
                 </div>
                 <div>
+                    <h2 className='font-semibold my-4'>বাজারভিত্তিক আজকের দাম</h2>
                     <BazarPriceTable market={market}></BazarPriceTable>
                 </div>
             </div>
