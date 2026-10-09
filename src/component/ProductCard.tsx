@@ -1,4 +1,5 @@
 import { Product } from '@/type/type';
+import Link from 'next/link';
 import React from 'react';
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
@@ -7,7 +8,7 @@ interface ProductType {
 }
 const unitBangla: Record<string, string> = {
     kg: "কেজি",
-    liter: "লিটার",
+    litre: "লিটার",
     piece: "পিস",
     dozen: "ডজন",
     gram: "গ্রাম",
@@ -24,7 +25,7 @@ const ProductCard = ({ product }: ProductType) => {
         );
     }
     return (
-        <article className='bg-white p-4 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"'>
+        <Link href={`/products/${product.id}`}><article className='bg-white p-4 rounded-2xl border border-transparent hover:border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"'>
             <header className='flex gap-3 items-center'>
                 <p className='bg-[#F0F5F0] rounded-xl p-4 text-xl'>{product.image}</p>
                 <div>
@@ -50,7 +51,7 @@ const ProductCard = ({ product }: ProductType) => {
                     </div>
                 </div>
             </div>
-        </article>
+        </article></Link>
     );
 };
 

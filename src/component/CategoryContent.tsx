@@ -33,7 +33,7 @@ const CategoryContent = async ({ params }: ProductDataType) => {
         <div className="container mx-auto">
 
             <div className="bg-white border border-slate-200 rounded-2xl p-4 w-full mt-10 flex items-center gap-4">
-                <p className="text-3xl">{data[0].categoryIcon}</p>
+                <p className="text-3xl p-4 bg-slate-200 rounded-2xl">{data[0].categoryIcon}</p>
                 <div>
                     <h1 className="text-2xl font-bold">{data[0].categoryNameBn} </h1>
                     <p>

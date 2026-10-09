@@ -16,7 +16,7 @@ const PriceRise = async () => {
     const priceUpProducts = data
         .filter(item => item.change.dir === "up")
         .sort((a, b) => b.change.pct - a.change.pct).slice(0, 6);
-    console.log(priceUpProducts)
+    // console.log(priceUpProducts)
 
     return (
         <section className='container mx-auto'>

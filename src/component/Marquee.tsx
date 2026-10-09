@@ -3,6 +3,16 @@ import React from 'react';
 import MarqueeText from "react-fast-marquee";
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
+const unitBangla: Record<string, string> = {
+    kg: "কেজি",
+    litre: "লিটার",
+    piece: "পিস",
+    dozen: "ডজন",
+    gram: "গ্রাম",
+    ml: "মিলি",
+};
+
+
 const Marquee = async () => {
     const res = await fetch('https://api.api-store.workers.dev/api/bazardor/products', {
         next: {
@@ -10,7 +20,7 @@ const Marquee = async () => {
         },
     })
     const data: Product[] = await res.json()
-    console.log(data)
+    // console.log(data)
 
     const englishToBanglaNumber =(number: number): string => {
         const banglaDigits = "০১২৩৪৫৬৭৮৯";
@@ -29,6 +39,7 @@ const Marquee = async () => {
                         data.map(item => <div className='ml-4 flex items-center gap-1' key={item.id}>
                             <span>{item.image}</span>
                             <span>{item.nameBn}</span>
+                            <span>{englishToBanglaNumber(item.today)} টাকা/{unitBangla[item.unit.toLowerCase()] || item.unit}</span> 
                             <span>{
                                 item.change.dir === "up" ? <TiArrowSortedUp className='text-xl text-[#890505]' /> : item.change.dir === "down" ? <TiArrowSortedDown className='text-xl text-[#05893E]' /> :
                                     <span className='text-xl text-black'>—</span>
