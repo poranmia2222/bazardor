@@ -14,7 +14,7 @@ const unitBangla: Record<string, string> = {
 
 
 const Marquee = async () => {
-    const res = await fetch('https://api.api-store.workers.dev/api/bazardor/products', {
+    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products', {
         next: {
             revalidate: 3600,
         },

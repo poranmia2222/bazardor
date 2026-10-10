@@ -1,3 +1,4 @@
+
 import CategoryContent from "@/component/CategoryContent";
 import { Suspense } from "react";
 
@@ -7,7 +8,13 @@ interface Props {
 
 const CategoryPage = ({ params }: Props) => {
   return (
-    <Suspense fallback={<span className="loading loading-spinner text-success mx-auto"></span>}>
+    <Suspense
+      fallback={
+        <div className="flex justify-center py-10">
+          <span className="loading loading-spinner loading-lg text-success" />
+        </div>
+      }
+    >
       <CategoryContent params={params} />
     </Suspense>
   );
