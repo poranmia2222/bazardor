@@ -12,9 +12,23 @@ const ProfilePage = () => {
     const router = useRouter();
 
     const handleSignOut = async () => {
-        await signOut();
-        router.replace('/');
-    };
+    try {
+        const { error } = await signOut();
+
+        if (error) {
+            toast.error(error.message || "Sign out failed!");
+            return;
+        }
+
+        toast.success("Signed out successfully!");
+
+        setTimeout(() => {
+            router.replace("/");
+        }, 1000);
+    } catch {
+        toast.error("Something went wrong. Please try again.");
+    }
+};
 
 
     const handleUpdateName = async (e: React.FormEvent<HTMLFormElement>) => {

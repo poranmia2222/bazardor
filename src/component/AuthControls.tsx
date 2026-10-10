@@ -4,15 +4,30 @@
 import { signOut, useSession } from '@/lib/auth-client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const AuthControls = () => {
     const { data: session, isPending } = useSession();
     const router = useRouter();
 
-    const handleSignOut = async () => {
-        await signOut();
-        router.push('/');
-    };
+        const handleSignOut = async () => {
+    try {
+        const { error } = await signOut();
+
+        if (error) {
+            toast.error(error.message || "Sign out failed!");
+            return;
+        }
+
+        toast.success("Signed out successfully!");
+
+        setTimeout(() => {
+            router.replace("/");
+        }, 1000);
+    } catch {
+        toast.error("Something went wrong. Please try again.");
+    }
+};
 
     if (isPending) {
         return (
