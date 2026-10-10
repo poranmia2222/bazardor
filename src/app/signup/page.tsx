@@ -1,5 +1,5 @@
 'use client'
-import { signUp } from '@/lib/auth-client';
+import { signIn, signUp } from '@/lib/auth-client';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
@@ -28,6 +28,18 @@ const SignUpPage = () => {
         }
     }
 
+    const signInWithGoogle = async () => {
+            const { data, error } = await signIn.social({
+                provider: 'google',
+            });
+        };
+    
+        const signInWithGithub = async () => {
+        const { data, error } = await signIn.social({
+            provider: "github"
+        })
+    }
+
     return (
         <div>
             <div className='mx-auto max-w-110 mt-2'>
@@ -51,8 +63,8 @@ const SignUpPage = () => {
                     </form>
                     <div className="divider">অথবা</div>
                     <div className='flex gap-2'>
-                        <button className="btn my-2  flex-1"><FcGoogle />অ্যাকাউন্ট তৈরি করুন</button>
-                        <button className="btn flex-1 my-2"><VscGithubInverted />অ্যাকাউন্ট তৈরি করুন</button>
+                        <button onClick={signInWithGoogle} className="btn my-2  flex-1"><FcGoogle />অ্যাকাউন্ট তৈরি করুন</button>
+                        <button onClick={signInWithGithub} className="btn flex-1 my-2"><VscGithubInverted />অ্যাকাউন্ট তৈরি করুন</button>
 
                     </div>
                     <p className='text-center my-2'>অ্যাকাউন্ট আছে? <Link className='underline text-green-700' href='/signin'>সাইন ইন করুন</Link></p>

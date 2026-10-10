@@ -4,11 +4,9 @@ import Link from 'next/link';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { VscGithubInverted } from 'react-icons/vsc';
-import toast from "react-hot-toast";
-
 const SignInPage = () => {
 
-    const handleSignIn = async(e: React.FormEvent<HTMLFormElement>) => {
+    const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries()) as { name: string, email: string, image: string, password: string };
@@ -18,16 +16,28 @@ const SignInPage = () => {
             callbackURL: "/",
         })
         if (resData) {
-      toast.success("Sign In successfull!");
-      console.log(user);
-    }
+            console.log(user);
+        }
 
-    if (error) {
-      toast.error("Something went error!");
-      console.log(error);
-    }
+        if (error) {
+            console.log(error);
+        }
 
     }
+
+    const signInWithGoogle = async () => {
+        const { data, error } = await signIn.social({
+            provider: 'google',
+        });
+    };
+
+    const signInWithGithub = async () => {
+    const { data, error } = await signIn.social({
+        provider: "github"
+    })
+}
+
+
 
     return (
         <div>
@@ -48,11 +58,11 @@ const SignInPage = () => {
                     </form>
                     <div className="divider">অথবা</div>
                     <div className='flex gap-2'>
-                        <button className="btn my-2  flex-1"><FcGoogle />অ্যাকাউন্ট তৈরি করুন</button>
-                        <button className="btn flex-1 my-2"><VscGithubInverted />অ্যাকাউন্ট তৈরি করুন</button>
+                        <button onClick={signInWithGoogle} className="btn my-2  flex-1"><FcGoogle />অ্যাকাউন্ট তৈরি করুন</button>
+                        <button onClick={signInWithGithub} className="btn flex-1 my-2"><VscGithubInverted />অ্যাকাউন্ট তৈরি করুন</button>
 
                     </div>
-                    <p className='text-center my-2'>অ্যাকাউন্ট আছে? <Link className='underline text-green-700' href='/signin'>সাইন আপ করুন</Link></p>
+                    <p className='text-center my-2'>অ্যাকাউন্ট আছে? <Link className='underline text-green-700' href='/signup'>সাইন আপ করুন</Link></p>
                 </div>
 
                 <p className='text-center my-2'><Link href='/'>← হোম পেজে ফিরে যান</Link></p>

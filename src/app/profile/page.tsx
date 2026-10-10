@@ -1,0 +1,60 @@
+'use client'
+import { updateUser, useSession } from '@/lib/auth-client';
+import { signOut } from 'better-auth/api';
+import Image from 'next/image';
+import React from 'react';
+import { IoIosLogOut } from 'react-icons/io';
+
+const ProfilePage = () => {
+    const { data: session, isPending } = useSession();
+    const handleSignOut = async () => {
+        await signOut();
+    };
+
+
+    const handleUpdateName = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget)
+        const name = formData.get('name');
+
+        if (typeof name !== 'string' || !name.trim()) {
+            return;
+        }
+        const resData = await updateUser({
+            name: name.trim(),
+        })
+
+    };
+
+
+    return (
+        <div className='max-w-4xl mx-auto mt-10'>
+            <h2 className='text-2xl'>আমার প্রোফাইল</h2>
+            <p>আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।</p>
+            <div className="bg-white border border-slate-200 rounded-2xl p-4 w-full mt-4 flex items-center justify-between gap-4">
+                <div className='flex items-center gap-4'>
+                    <Image className='rounded-xl' src={session?.user.image || "/default-avatar.png"} alt='profile image' width={70} height={70}></Image>
+                    <div>
+                        <h2 className='text-xl font-bold'>{session?.user.name}</h2>
+                        <p>{session?.user.email}</p>
+                    </div>
+                </div>
+                <button type="button" onClick={handleSignOut} className="text-[#D03739] btn border-[#D03739] bg-transparent" >
+                    Sign Out <IoIosLogOut className='text-xl' />
+                </button>
+            </div>
+            <div className="bg-white border border-slate-200 rounded-2xl p-4 w-full mt-4 ">
+                <form onSubmit={handleUpdateName} className='px-30'>
+                    <fieldset className="fieldset">
+                        <label className="label text-lg" htmlFor="name">নাম</label>
+                        <input name='name' type="text" id="name" className="input w-full text-lg" required />
+                        <button type='submit' className="btn btn-success bg-primary my-2 text-white">আপডেট</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default ProfilePage;
