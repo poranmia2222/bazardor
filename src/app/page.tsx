@@ -1,16 +1,28 @@
-import AllProducts from "@/component/AllProducts";
+
+import { Suspense } from "react";
 import Banner from "@/component/Banner";
-import PriceFall from "@/component/PriceFall";
 import PriceRise from "@/component/PriceRise";
-import Image from "next/image";
+import PriceFall from "@/component/PriceFall";
+import AllProducts from "@/component/AllProducts";
 
 export default function Home() {
   return (
     <div>
-      <Banner></Banner>
-      <PriceRise></PriceRise>
-      <PriceFall></PriceFall>
-      <AllProducts></AllProducts>
+      <Suspense fallback={<div className="h-64 animate-pulse" />}>
+        <Banner />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-48 animate-pulse" />}>
+        <PriceRise />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-48 animate-pulse" />}>
+        <PriceFall />
+      </Suspense>
+
+      <Suspense fallback={<div className="h-64 animate-pulse" />}>
+        <AllProducts />
+      </Suspense>
     </div>
   );
 }
