@@ -1,12 +1,12 @@
 
-import CategoryContent from "@/component/CategoryContent";
 import { Suspense } from "react";
+import CategoryContent from "@/component/CategoryContent";
 
 interface Props {
   params: Promise<{ category: string }>;
 }
 
-const CategoryPage = ({ params }: Props) => {
+export default function CategoryPage({ params }: Props) {
   return (
     <Suspense
       fallback={
@@ -18,6 +18,4 @@ const CategoryPage = ({ params }: Props) => {
       <CategoryContent params={params} />
     </Suspense>
   );
-};
-
-export default CategoryPage;
+}
