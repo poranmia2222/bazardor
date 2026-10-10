@@ -1,7 +1,7 @@
 
 'use client';
 
-import { signIn, signUp } from '@/lib/auth-client';
+import { signIn, signOut, signUp } from '@/lib/auth-client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -12,49 +12,52 @@ import { VscGithubInverted } from 'react-icons/vsc';
 const SignUpPage = () => {
     const router = useRouter();
 
-    const handleSignUp = async (
-        e: React.FormEvent<HTMLFormElement>
-    ) => {
+
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const form = e.currentTarget;
         const formData = new FormData(form);
+        const name = String(formData.get("name") ?? "");
+        const email = String(formData.get("email") ?? "");
+        const password = String(formData.get("password") ?? "");
 
-        const name = String(formData.get('name') ?? '');
-        const email = String(formData.get('email') ?? '');
-        const password = String(formData.get('password') ?? '');
         const confirmPassword = String(
-            formData.get('confirmPassword') ?? ''
+            formData.get("confirmPassword") ?? ""
         );
-
         if (password !== confirmPassword) {
-            toast.error('Passwords do not match!');
+            toast.error("Passwords do not match!");
             return;
         }
-
         try {
             const { error } = await signUp.email({
                 name,
                 email,
                 password,
-                callbackURL: '/signin',
+                callbackURL: "/signin",
             });
-
             if (error) {
-                toast.error(error.message || 'Signup failed!');
+                toast.error(error.message || "Signup failed!");
+                return;
+            }
+            
+            const { error: signOutError } = await signOut();
+
+            if (signOutError) {
+                toast.error("Account created, but sign-out failed.");
                 return;
             }
 
-            toast.success('Account created successfully! Please sign in.');
+            toast.success("Account created successfully! Please sign in.");
 
-            // Navigate after the toast has time to appear.
             setTimeout(() => {
-                router.push('/signin');
+                router.replace("/signin");
             }, 1200);
         } catch {
-            toast.error('Something went wrong. Please try again.');
+            toast.error("Something went wrong. Please try again.");
         }
     };
+
 
     const signInWithGoogle = async () => {
         try {
