@@ -1,16 +1,22 @@
-import { connection } from 'next/server';
+
+import { Suspense } from 'react';
 import ProductDetails from '@/component/ProductDetails';
-import React from 'react';
 
 interface Props {
     params: Promise<{ id: string }>;
 }
-const ProductDetailsPage = async({ params }: Props) => {
-    await connection();
+
+const ProductDetailsPage = ({ params }: Props) => {
     return (
-        <div>
+        <Suspense
+            fallback={
+                <p className="p-6 text-center">
+                    পণ্যের তথ্য লোড হচ্ছে...
+                </p>
+            }
+        >
             <ProductDetails params={params} />
-        </div>
+        </Suspense>
     );
 };
 
