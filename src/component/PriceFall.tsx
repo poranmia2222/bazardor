@@ -23,7 +23,7 @@ const PriceFall = async () => {
             <header className='mt-16 mb-5'>
                 <h2 className='text-3xl font-bold flex gap-2'><span className='text-green-600'><TiArrowSortedDown /></span> আজ দাম কমেছে</h2>
             </header>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
                     priceUpProducts.map(product => <ProductCard key={product.id} product={product}></ProductCard>)
                 }

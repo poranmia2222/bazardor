@@ -12,15 +12,15 @@ const BazarPriceTable = ({ market }: PropsType) => {
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="border-b border-gray-200 text-left text-gray-500">
-            <th className="px-3 py-4 font-semibold">বাজার</th>
-            <th className="px-3 py-4 font-semibold">বিভাগ</th>
-            <th className="px-3 py-4 text-right font-semibold">
+            <th className="md:px-3 md:py-4 font-semibold">বাজার</th>
+            <th className="md:px-3 md:py-4 font-semibold">বিভাগ</th>
+            <th className="md:px-3 md:py-4 text-right font-semibold">
               সর্বনিম্ন
             </th>
-            <th className="px-3 py-4 text-right font-semibold">
+            <th className="md:px-3 md:py-4 text-right font-semibold">
               সর্বোচ্চ
             </th>
-            <th className="px-3 py-4 text-right font-semibold">
+            <th className="md:px-3 md:py-4 text-right font-semibold">
               গড়
             </th>
           </tr>
@@ -35,23 +35,23 @@ const BazarPriceTable = ({ market }: PropsType) => {
                 key={`${item.market}-${item.division}-${index}`}
                 className="border-b border-gray-300 transition-colors even:bg-[#F0F5F0] hover:bg-green-50"
               >
-                <td className="px-3 py-3 font-medium text-gray-800">
+                <td className="md:px-3 py-2 md:py-3 font-medium text-gray-800">
                   {item.market}
                 </td>
 
-                <td className="px-3 py-3 text-gray-700">
+                <td className="md:px-3 py-2 md:py-3 text-gray-700">
                   {item.division}
                 </td>
 
-                <td className="px-3 py-3 text-right text-gray-700">
+                <td className="md:px-3 py-2 md:py-3 text-right text-gray-700">
                   {item.min} টাকা
                 </td>
 
-                <td className="px-3 py-3 text-right text-gray-700">
+                <td className="md:px-3py-2  md:py-3 text-right text-gray-700">
                   {item.max} টাকা
                 </td>
 
-                <td className="px-3 py-3 text-right font-bold text-gray-800">
+                <td className="md:px-3 py-2 md:py-3 text-right font-bold text-gray-800">
                   {average.toFixed(2)} টাকা
                 </td>
               </tr>

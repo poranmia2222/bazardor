@@ -13,10 +13,10 @@ const Header = () => {
         <div className='bg-white'>
             <div className='container mx-auto flex justify-between my-2 px-4 lg:p-0'>
                 <Link href='/'>
-                    <div className='flex gap-4 '>
-                        <Image className='w-10 h-10 bg-primary p-2 rounded' src={logo} alt='logo'></Image>
+                    <div className='flex gap-4 items-center'>
+                        <Image className='w-7 h-7 md:w-10 md:h-10 bg-primary p-2 rounded' src={logo} alt='logo'></Image>
                         <div>
-                            <h2 className='text-xl font-bold'>বাজার দর</h2>
+                            <h2 className='lg:text-xl font-bold'>বাজার দর</h2>
                             <DateDisplay></DateDisplay>
                         </div>
                     </div>

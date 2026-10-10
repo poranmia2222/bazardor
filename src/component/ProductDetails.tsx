@@ -96,22 +96,21 @@ const ProductDetails = async ({ params }: ProductDataType) => {
     return (
         <div className="container mx-auto">
             {/* Product information */}
-            <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4">
+            <div className="mt-10 flex  flex-row items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4">
                 <div className="flex items-center gap-4">
-                    <p className="rounded-2xl bg-[#F0F5F0] p-4 text-3xl">
+                    <p className="rounded-2xl bg-[#F0F5F0] p-2 md:p-4 md:text-3xl">
                         {productData.image ?? '🛒'}
                     </p>
-
                     <div>
-                        <h1 className="text-2xl font-bold">
+                        <h1 className="md:text-2xl font-bold">
                             {productData.nameBn}
                         </h1>
 
-                        <p>
+                        <p className='text-[10px] md:text-sm'>
                             প্রতি {unitBn} {productData.categoryNameBn ?? ''}
                         </p>
 
-                        <p>
+                        <p className='text-[10px] md:text-lg'>
                             গতকালের তুলনায় আজ দাম{' '}
                             <span className="font-bold">
                                 {changeDir === 'up'
@@ -126,18 +125,18 @@ const ProductDetails = async ({ params }: ProductDataType) => {
                 </div>
 
                 {/* Today's price */}
-                <div className="rounded-2xl bg-[#F0F5F0] px-5 py-2 text-center">
-                    <p>আজকের দাম</p>
+                <div className="rounded-md md:rounded-2xl bg-[#F0F5F0] md:px-5 md:py-2 text-center">
+                    <p className='text-[8px] md:text-lg'>আজকের দাম</p>
 
-                    <h2 className="text-4xl font-bold">
+                    <h2 className="md:text-4xl font-bold">
                         {englishToBanglaNumber(today)}
                     </h2>
 
-                    <p>প্রতি/{unitBn}</p>
+                    <p className='text-[10px] md:text-lg'>প্রতি/{unitBn}</p>
 
                     <p
-                        className={`flex items-center justify-center gap-2 rounded-3xl px-3 py-1 text-lg font-semibold ${changePct > 0
-                                ? 'text-[#D03739]'
+                        className={`flex items-center justify-center gap-2 rounded-3xl px-3 py-1 text-[10px] md:text-lg font-semibold ${changePct > 0
+                                ? 'text-[#D03739] '
                                 : changePct < 0
                                     ? 'text-[#1A9951]'
                                     : 'text-black'

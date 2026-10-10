@@ -13,7 +13,7 @@ const  DateDisplay = () => {
     setDate(today);
   }, []);
 
-  return <p className="text-sm">{date}</p>;
+  return <p className="text-[10px] lg:text-sm">{date}</p>;
 };
 
 export default DateDisplay;
