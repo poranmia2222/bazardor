@@ -7,8 +7,10 @@ import { IoIosLogOut } from 'react-icons/io';
 import toast from "react-hot-toast";
 
 const ProfilePage = () => {
+
     const { data: session, isPending } = useSession();
     const router = useRouter();
+
     const handleSignOut = async () => {
         await signOut();
         router.replace('/');
@@ -57,7 +59,7 @@ const ProfilePage = () => {
                         <p className='text-[10px]'>{session?.user.email}</p>
                     </div>
                 </div>
-                <button type="button" onClick={handleSignOut} className="text-[#D03739] btn border-[#D03739] p-2 bg-transparent text-[10px]" >
+                <button type="button" onClick={handleSignOut} className="text-[#D03739] btn border-[#D03739] p-2 bg-transparent text-[10px] md:text-xl" >
                     Sign Out <IoIosLogOut className='md:text-xl' />
                 </button>
             </div>
