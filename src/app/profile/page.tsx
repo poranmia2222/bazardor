@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import React from 'react';
 import { IoIosLogOut } from 'react-icons/io';
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
     const { data: session, isPending } = useSession();
@@ -15,19 +16,31 @@ const ProfilePage = () => {
 
 
     const handleUpdateName = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        const formData = new FormData(e.currentTarget)
-        const name = formData.get('name');
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name");
 
-        if (typeof name !== 'string' || !name.trim()) {
-            return;
-        }
+    if (typeof name !== "string" || !name.trim()) {
+        toast.error("Please enter your name!");
+        return;
+    }
+
+    try {
         const resData = await updateUser({
             name: name.trim(),
-        })
+        });
 
-    };
+        if (resData.error) {
+            toast.error(resData.error.message || "Failed to update name!");
+            return;
+        }
+
+        toast.success("Name updated successfully!");
+    } catch {
+        toast.error("Something went wrong. Please try again.");
+    }
+};
 
 
     return (
