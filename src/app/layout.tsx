@@ -5,6 +5,7 @@ import Header from "@/component/Header";
 import Marquee from "@/component/Marquee";
 import Footer from "@/component/Footer";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["latin", "bengali"],
@@ -26,16 +27,24 @@ export default function RootLayout({
 
     data-theme="light"
     className={`${hindSiliguri.className} h-full antialiased`}>
-      <body className= "min-h-full flex flex-col bg-[#F0F5F0]">
-        <Header ></Header>
-        <Marquee></Marquee>
-        <main className="flex-1">
-          {children}
-          <Toaster position="top-right" />
-        </main>
-        {/* <h1>আজকের দাম</h1> */}
-        <Footer></Footer>
-      </body>
+      <body className="min-h-full flex flex-col bg-[#F0F5F0]">
+  <Suspense fallback={<div className="h-16" />}>
+    <Header />
+  </Suspense>
+
+  <Suspense fallback={<div className="h-10" />}>
+    <Marquee />
+  </Suspense>
+
+  <main className="flex-1">
+    {children}
+    <Toaster position="top-right" />
+  </main>
+
+  <Suspense fallback={null}>
+    <Footer />
+  </Suspense>
+</body>
     </html>
   );
 }
