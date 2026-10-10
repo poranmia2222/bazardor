@@ -1,16 +1,15 @@
+import { connection } from 'next/server';
 import ProductDetails from '@/component/ProductDetails';
-import React, { Suspense } from 'react';
+import React from 'react';
 
 interface Props {
     params: Promise<{ id: string }>;
 }
-const ProductDetailsPage = ({ params }: Props) => {
+const ProductDetailsPage = async({ params }: Props) => {
+    await connection();
     return (
         <div>
-            <Suspense
-                fallback={<div>Loading category...</div>}>
-                <ProductDetails params={params} />
-            </Suspense>
+            <ProductDetails params={params} />
         </div>
     );
 };

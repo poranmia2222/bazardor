@@ -1,0 +1,35 @@
+import { SkeletonBlock } from "@/component/LoadingSkeleton";
+
+const SignUpLoading = () => (
+    <div
+        className="mx-auto mt-2 max-w-110"
+        role="status"
+        aria-label="সাইন আপ পেজ লোড হচ্ছে"
+    >
+        <span className="sr-only">সাইন আপ পেজ লোড হচ্ছে</span>
+        <div aria-hidden="true">
+            <div className="my-8 space-y-3">
+                <SkeletonBlock className="mx-auto h-9 w-48" />
+                <SkeletonBlock className="mx-auto h-5 w-64" />
+            </div>
+            <div className="space-y-4 rounded-2xl border border-slate-300 bg-white p-8">
+                {[0, 1, 2, 3].map((item) => (
+                    <div key={item} className="space-y-2">
+                        <SkeletonBlock className="h-5 w-28" />
+                        <SkeletonBlock className="h-12 w-full rounded-lg" />
+                    </div>
+                ))}
+                <SkeletonBlock className="h-11 w-full rounded-lg" />
+                <SkeletonBlock className="mx-auto h-5 w-20" />
+                <div className="flex gap-2">
+                    <SkeletonBlock className="h-11 flex-1 rounded-lg" />
+                    <SkeletonBlock className="h-11 flex-1 rounded-lg" />
+                </div>
+                <SkeletonBlock className="mx-auto h-5 w-52" />
+            </div>
+            <SkeletonBlock className="mx-auto my-4 h-5 w-40" />
+        </div>
+    </div>
+);
+
+export default SignUpLoading;

@@ -2,45 +2,77 @@
 import { signIn } from '@/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
+import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 import { VscGithubInverted } from 'react-icons/vsc';
+import { Suspense } from 'react';
+import ProtectedRouteToast from '@/component/ProtectedRouteToast';
+
+
 const SignInPage = () => {
 
     const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+        e.preventDefault();
+
         const formData = new FormData(e.currentTarget);
-        const user = Object.fromEntries(formData.entries()) as { name: string, email: string, image: string, password: string };
-        // console.log(user)
-        const { data: resData, error } = await signIn.email({
-            ...user,
-            callbackURL: "/",
-        })
-        if (resData) {
-            console.log(user);
+        const user = Object.fromEntries(formData.entries()) as {
+            email: string;
+            password: string;
+        };
+        try {
+            const { data, error } = await signIn.email({
+                ...user,
+                callbackURL: '/',
+            });
+            if (error) {
+                toast.error(error.message || 'Sign in failed!');
+                return;
+            }
+            if (data) {
+                toast.success('Successfully signed in!');
+            }
+        } catch {
+            toast.error('Something went wrong. Please try again.');
         }
-
-        if (error) {
-            console.log(error);
-        }
-
     }
 
     const signInWithGoogle = async () => {
-        const { data, error } = await signIn.social({
-            provider: 'google',
-        });
+        try {
+            const { error } = await signIn.social({
+                provider: 'google',
+                callbackURL: '/',
+            });
+
+            if (error) {
+                toast.error(error.message || 'Google sign-in failed!');
+            }
+        } catch {
+            toast.error('Google sign-in failed!');
+        }
     };
 
     const signInWithGithub = async () => {
-    const { data, error } = await signIn.social({
-        provider: "github"
-    })
-}
+        try {
+            const { error } = await signIn.social({
+                provider: 'github',
+                callbackURL: '/',
+            });
+
+            if (error) {
+                toast.error(error.message || 'GitHub sign-in failed!');
+            }
+        } catch {
+            toast.error('GitHub sign-in failed!');
+        }
+    };
 
 
 
     return (
         <div>
+            <Suspense fallback={null}>
+                <ProtectedRouteToast />
+            </Suspense>
             <div className='mx-auto max-w-110 mt-2'>
                 <div className='my-8'>
                     <h2 className='text-center text-3xl font-bold'>সাইন ইন</h2>

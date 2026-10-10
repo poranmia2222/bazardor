@@ -3,16 +3,19 @@
 
 import { signOut, useSession } from '@/lib/auth-client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const AuthControls = () => {
     const { data: session, isPending } = useSession();
+    const router = useRouter();
 
     const handleSignOut = async () => {
         await signOut();
+        router.push('/');
     };
 
     if (isPending) {
-        return <span>Loading...</span>;
+        return <span className="loading loading-spinner loading-lg text-success"></span>;
     }
 
     if (session?.user) {

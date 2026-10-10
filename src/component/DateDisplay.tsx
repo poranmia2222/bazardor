@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const DateDisplay = () => {
+const  DateDisplay = () => {
   const [date, setDate] = useState("");
 
   useEffect(() => {

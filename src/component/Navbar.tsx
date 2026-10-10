@@ -1,6 +1,7 @@
 import { Category } from '@/type/type';
 import Link from 'next/link';
-import React from 'react';
+import React, { Suspense } from 'react';
+import CategoryNavLinks from './CategoryNavLinks';
 
 const Navbar = async () => {
     const res = await fetch(
@@ -13,14 +14,6 @@ const Navbar = async () => {
     );
     const data: Category[] = await res.json()
     // console.log(data)
-
-    const navLinks = <>
-
-        {
-            data.map(item => <li key={item.id} className=' btn border-none bg-transparent hover:bg-[#05893E] hover:text-white'><Link href={`/${item.slug}`}><span>{item.icon}</span> {item.nameBn}</Link></li>)
-        }
-
-    </>
 
     return (
         <div className='max-lg:collapse border-b-2 border-b-slate-300 bg-white shadow-sm w-full rounded-md'>
@@ -35,14 +28,18 @@ const Navbar = async () => {
                     </div>
                     <div className="navbar-start hidden lg:flex">
                         <ul className=" gap-2 menu-horizontal  px-1">
-                            {navLinks}
+                            <Suspense fallback={null}>
+                                <CategoryNavLinks categories={data} />
+                            </Suspense>
                         </ul>
                     </div>
                 </div>
 
                 <div className="collapse-content lg:hidden z-1">
                     <ul className="menu">
-                        {navLinks}
+                        <Suspense fallback={null}>
+                            <CategoryNavLinks categories={data} />
+                        </Suspense>
                     </ul>
                 </div>
             </div>

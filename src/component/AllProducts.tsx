@@ -15,7 +15,7 @@ const AllProducts = async() => {
         const data: Product[] = await res.json()
 
     return (
-        <section className='container mx-auto'>
+        <section id="all-products" className='container mx-auto'>
             <header className='mt-16 mb-5'>
                 <h2 className='text-3xl font-bold flex gap-2'>সব পণ্য</h2>
                 <p className='text-xl'>মোট {data.length}টি পণ্য দেখানো হচ্ছে</p>

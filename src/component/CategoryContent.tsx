@@ -1,6 +1,8 @@
+import { notFound } from "next/navigation";
 import { Product } from "@/type/type";
 import ProductCard from "./ProductCard";
 import SortSection from "./SortSection";
+
 
 interface ProductDataType {
     params: Promise<{ category: string }>;
@@ -19,6 +21,9 @@ const CategoryContent = async ({ params }: ProductDataType) => {
     );
 
     const data: Product[] = await res.json();
+    if (!Array.isArray(data) || data.length === 0) {
+    notFound();
+}
 
     const englishToBanglaNumber = (number: number): string => {
         const banglaDigits = "০১২৩৪৫৬৭৮৯";

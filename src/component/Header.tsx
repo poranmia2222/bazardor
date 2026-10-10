@@ -25,7 +25,7 @@ const Header = () => {
                    <Link href="/signin"><button className="btn border-none bg-transparent ">সাইন ইন</button></Link>
                     <Link href="/signup"><button className="btn btn-success bg-primary text-white">সাইন আপ</button></Link>
                 </div> */}
-                <Suspense fallback={<span>Loading...</span>}>
+                <Suspense fallback={<span className="loading loading-spinner loading-lg text-success"></span>}>
                     <AuthControls />
                 </Suspense>
             </div>

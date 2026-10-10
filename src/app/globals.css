@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+html,body {
+  scroll-behavior: smooth;
+}
 .bg-primary{
   background-color: #05893E;
 }

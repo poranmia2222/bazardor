@@ -1,14 +1,16 @@
 'use client'
-import { updateUser, useSession } from '@/lib/auth-client';
-import { signOut } from 'better-auth/api';
+import { signOut, updateUser, useSession } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import React from 'react';
 import { IoIosLogOut } from 'react-icons/io';
 
 const ProfilePage = () => {
     const { data: session, isPending } = useSession();
+    const router = useRouter();
     const handleSignOut = async () => {
         await signOut();
+        router.replace('/');
     };
 
 
@@ -34,7 +36,9 @@ const ProfilePage = () => {
             <p>আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।</p>
             <div className="bg-white border border-slate-200 rounded-2xl p-4 w-full mt-4 flex items-center justify-between gap-4">
                 <div className='flex items-center gap-4'>
-                    <Image className='rounded-xl' src={session?.user.image || "/default-avatar.png"} alt='profile image' width={70} height={70}></Image>
+                    {session?.user.image ? <Image className='rounded-xl' src={session?.user.image || "/default-avatar.png"} alt='profile image' width={70} height={70}></Image> : <div className="flex px-8 py-3 items-center justify-center rounded-xl bg-primary text-lg font-bold text-white">
+                        {session?.user.name?.charAt(0).toUpperCase() || 'U'}
+                    </div>}
                     <div>
                         <h2 className='text-xl font-bold'>{session?.user.name}</h2>
                         <p>{session?.user.email}</p>

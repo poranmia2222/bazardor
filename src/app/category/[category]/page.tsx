@@ -7,7 +7,7 @@ interface Props {
 
 const CategoryPage = ({ params }: Props) => {
   return (
-    <Suspense fallback={<div>Loading category...</div>}>
+    <Suspense fallback={<span className="loading loading-spinner text-success mx-auto"></span>}>
       <CategoryContent params={params} />
     </Suspense>
   );
