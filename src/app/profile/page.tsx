@@ -79,7 +79,7 @@ const ProfilePage = () => {
             </div>
             <div className="bg-white border border-slate-200 rounded-2xl p-4 w-full mt-4 ">
                 <h1 className='font-bold'>তথ্য</h1>
-                <form onSubmit={handleUpdateName} className='md:w-90 mx-auto'>
+                <form onSubmit={handleUpdateName} className=' mx-auto'>
                     <fieldset className="fieldset">
                         <label className="label text-lg" htmlFor="name">নাম</label>
                         <input name='name' type="text" id="name" className="input w-full text-lg" required />
