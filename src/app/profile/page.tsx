@@ -61,7 +61,7 @@ const ProfilePage = () => {
 
     return (
         <div className='max-w-4xl mx-auto mt-10'>
-            <h2 className='md:text-2xl'>আমার প্রোফাইল</h2>
+            <h2 className='md:text-2xl font-bold'>আমার প্রোফাইল</h2>
             <p>আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।</p>
             <div className="bg-white border border-slate-200 rounded-2xl p-4 w-full mt-4 flex items-center justify-between gap-4">
                 <div className='flex items-center gap-4'>
