@@ -74,7 +74,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
                 <button type="button" onClick={handleSignOut} className="text-[#D03739] btn border-[#D03739] p-2 bg-transparent text-[10px] md:text-xl" >
-                    Sign Out <IoIosLogOut className='md:text-xl' />
+                    Sign Out <IoIosLogOut className='md:text-lg' />
                 </button>
             </div>
             <div className="bg-white border border-slate-200 rounded-2xl p-4 w-full mt-4 ">
