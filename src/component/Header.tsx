@@ -10,7 +10,7 @@ import { Suspense } from 'react';
 const Header = () => {
 
     return (
-        <div className='bg-white'>
+        <div className='bg-white sticky top-0 z-50 shadow-md'>
             <div className='container mx-auto flex justify-between my-2 px-4 lg:p-0'>
                 <Link href='/'>
                     <div className='flex gap-4 items-center'>
