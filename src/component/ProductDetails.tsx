@@ -97,7 +97,7 @@ const ProductDetails = async ({ params }: ProductDataType) => {
 
     return (
         <div className="container mx-auto">
-            <div className='flex gap-2'>
+            <div className='flex gap-2 mt-10 items-center'>
                 <Link href='/'>হোম</Link> <IoIosArrowForward /> <Link href={`/category/${productData.category}`}>{productData.categoryNameBn}</Link> <IoIosArrowForward /> <span>{productData.nameBn}</span>
             </div>
             {/* Product information */}

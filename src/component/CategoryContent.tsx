@@ -2,6 +2,8 @@
 import { notFound } from "next/navigation";
 import { Product } from "@/type/type";
 import SortSection from "./SortSection";
+import { IoIosArrowForward } from "react-icons/io";
+import Link from "next/link";
 
 interface ProductDataType {
   params: Promise<{ category: string }>;
@@ -40,6 +42,9 @@ const CategoryContent = async ({ params }: ProductDataType) => {
 
   return (
     <div className="container mx-auto">
+      <div className="flex gap-2 items-center mt-10">
+        <Link href='/'>হোম</Link> <IoIosArrowForward /> <span>{data[0].categoryNameBn}</span>
+      </div>
       <div className="mt-10 flex w-full items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4">
         <p className="rounded-2xl bg-slate-200 p-4 text-3xl">
           {data[0].categoryIcon}

@@ -16,7 +16,7 @@ const Navbar = async () => {
     // console.log(data)
 
     return (
-        <div className='max-lg:collapse border-t-2 border-t-slate-300 bg-white w-full rounded-md'>
+        <div className='max-lg:collapse border-t border-b-2 border-slate-300 bg-white w-full rounded-md'>
             <div className="max-lg:collapse container mx-auto">
                 <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
                 <label htmlFor="navbar-1-toggle" className="fixed inset-0 hidden max-lg:peer-checked:block"></label>
