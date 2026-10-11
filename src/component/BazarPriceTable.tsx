@@ -6,6 +6,17 @@ interface PropsType {
 }
 
 const BazarPriceTable = ({ market }: PropsType) => {
+
+  const englishToBanglaNumber = (number: number): string => {
+    const banglaDigits = "০১২৩৪৫৬৭৮৯";
+
+    return String(number).replace(
+      /\d/g,
+      (digit) => banglaDigits[Number(digit)]
+    );
+  };
+
+
   return (
     <div className="w-full overflow-x-auto rounded-2xl border border-gray-200 bg-white p-3">
       
@@ -44,15 +55,15 @@ const BazarPriceTable = ({ market }: PropsType) => {
                 </td>
 
                 <td className="md:px-3 py-2 md:py-3 text-right text-gray-700">
-                  {item.min} টাকা
+                  {englishToBanglaNumber(item.min)} টাকা
                 </td>
 
                 <td className="md:px-3py-2  md:py-3 text-right text-gray-700">
-                  {item.max} টাকা
+                  {englishToBanglaNumber(item.max)} টাকা
                 </td>
 
                 <td className="md:px-3 py-2 md:py-3 text-right font-bold text-gray-800">
-                  {average.toFixed(2)} টাকা
+                  {englishToBanglaNumber(Number(average.toFixed(2)))} টাকা
                 </td>
               </tr>
             );
