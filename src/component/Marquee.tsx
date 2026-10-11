@@ -36,7 +36,7 @@ const Marquee = async () => {
             <div className='py-3 my-2 border-b-2 border-b-slate-300'>
                 <MarqueeText>
                     {
-                        data.map(item => <div className='ml-4 flex items-center gap-1' key={item.id}>
+                        data.map(item => <div className='ml-4 border-l-slate-300 flex items-center gap-1' key={item.id}>
                             <span>{item.image}</span>
                             <span>{item.nameBn}</span>
                             <span>{englishToBanglaNumber(item.today)} টাকা/{unitBangla[item.unit.toLowerCase()] || item.unit}</span> 

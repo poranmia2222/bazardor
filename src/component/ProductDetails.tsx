@@ -3,6 +3,8 @@ import { Product } from '@/type/type';
 import { notFound } from 'next/navigation';
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 import BazarPriceTable from './BazarPriceTable';
+import Link from 'next/link';
+import { IoIosArrowForward } from 'react-icons/io';
 
 interface ProductDataType {
     params: Promise<{ id: string }>;
@@ -95,6 +97,9 @@ const ProductDetails = async ({ params }: ProductDataType) => {
 
     return (
         <div className="container mx-auto">
+            <div>
+                <Link href='/'>হোম</Link> <IoIosArrowForward /> <Link href={`/category/${productData.category}`}>{productData.categoryNameBn}</Link> <IoIosArrowForward /> <span>{productData.nameBn}</span>
+            </div>
             {/* Product information */}
             <div className="mt-10 flex  flex-row items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4">
                 <div className="flex items-center gap-4">
